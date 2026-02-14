@@ -99,7 +99,11 @@
 
                 <div class="task-list">
                   @for (todo of todoList; track $index) {
-                  <div class="task-item pending">
+                  <div class="task-item"
+                  [ngClass]="{
+                    'completed': todo.status == todoStatus.Completed,
+                    'pending': todo.status == todoStatus.Pending
+                  }">
                     <div class="task-checkbox">
                       <input type="checkbox" class="form-check-input" id="task1" [checked]="todo.status"/>
                     </div>
@@ -112,9 +116,9 @@
                       </div>
                     </div>
                     <div class="task-actions">
-                      <button class="btn btn-sm btn-status btn-warning" title="Mark as Pending">
+                      <!-- <button class="btn btn-sm btn-status btn-warning" title="Mark as Pending">
                         <i class="fas fa-spinner"></i>
-                      </button>
+                      </button> -->
                       <button class="btn btn-sm btn-edit" title="Edit">
                         <i class="fas fa-edit"></i>
                       </button>
