@@ -4,7 +4,7 @@ import { TodoStatus } from '../models/todo-status.enum';
 @Injectable({
   providedIn: 'root',
 })
-export class Todoservice {
+export class TodoService {
   private storageKey = 'todoList';
   private todoList: TodoItemModel[] = [];
 

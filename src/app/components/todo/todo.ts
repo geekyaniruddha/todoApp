@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoItemModel } from '../../models/todo.model';
-import { Todoservice } from '../../services/todoservice';
+import { TodoService } from '../../services/todo.service';
 import { NgClass } from '@angular/common';
 import { TodoStatus } from '../../models/todo-status.enum';
 
@@ -16,7 +16,7 @@ export class Todo implements OnInit {
   newTask: string = "";
   todoStatus = TodoStatus;
 
-  constructor(private todoService: Todoservice) { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
     this.todoList = this.todoService.getAllTasks();
