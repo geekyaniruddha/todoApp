@@ -1,137 +1,130 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo Application</title>
-    <meta property="og:image" content="https://bolt.new/static/og_default.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo Application</title>
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
-  <body>
-    <div class="app-container">
-      <div class="container py-5">
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-10 col-xl-8">
 
-            <div class="header-section text-center mb-5">
-              <div class="app-icon mb-3">
-                <i class="fas fa-tasks"></i>
-              </div>
-              <h1 class="app-title mb-2">My Todo List</h1>
-              <p class="app-subtitle">Organize your tasks efficiently</p>
+<body>
+  <div class="app-container">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8">
+
+          <div class="header-section text-center mb-5">
+            <div class="app-icon mb-3">
+              <i class="fas fa-tasks"></i>
             </div>
+            <h1 class="app-title mb-2">My Todo List</h1>
+            <p class="app-subtitle">Organize your tasks efficiently</p>
+          </div>
 
-            <div class="card main-card shadow-lg">
-              <div class="card-body p-4">
+          <div class="card main-card shadow-lg">
+            <div class="card-body p-4">
 
-                <div class="add-task-section mb-4">
-                  <h5 class="section-title mb-3">
-                    <i class="fas fa-plus-circle me-2"></i>Add New Task
-                  </h5>
-                  <div class="input-group input-group-lg">
-                    <span class="input-group-text bg-white border-end-0">
-                      <i class="fas fa-edit text-muted"></i>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control border-start-0 ps-0"
-                      placeholder="What needs to be done?"
-                      value=""
-                      [(ngModel)]="newTask"
-                    />
-                    <button class="btn btn-primary btn-add px-4" type="button" (click)="onSaveTask()">
-                      <i class="fas fa-plus me-2"></i>Add Task
-                    </button>
-                  </div>
+              <div class="add-task-section mb-4">
+                <h5 class="section-title mb-3">
+                  <i class="fas fa-plus-circle me-2"></i>Add New Task
+                </h5>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="fas fa-edit text-muted"></i>
+                  </span>
+                  <input type="text" class="form-control border-start-0 ps-0" placeholder="What needs to be done?"
+                    value="" [(ngModel)]="newTask" />
+                  <button class="btn btn-primary btn-add px-4" type="button" (click)="onSaveTask()">
+                    <i class="fas fa-plus me-2"></i>Add Task
+                  </button>
                 </div>
+              </div>
 
-                <hr class="divider my-4" />
+              <hr class="divider my-4" />
 
-                <div class="controls-section mb-4">
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <div class="search-box">
-                        <div class="input-group">
-                          <span class="input-group-text bg-white border-end-0">
-                            <i class="fas fa-search text-muted"></i>
-                          </span>
-                          <input
-                            type="text"
-                            class="form-control border-start-0 ps-0"
-                            placeholder="Search tasks..."
-                            value=""
-                          />
-                        </div>
+              <div class="controls-section mb-4">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="search-box">
+                      <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                          <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control border-start-0 ps-0" placeholder="Search tasks..."
+                          value="" />
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="sort-box">
-                        <div class="input-group">
-                          <span class="input-group-text bg-white border-end-0">
-                            <i class="fas fa-sort text-muted"></i>
-                          </span>
-                          <select class="form-select border-start-0 ps-0">
-                            <option selected>Sort by: Default</option>
-                            <option>Sort by: Date Added</option>
-                            <option>Sort by: Name (A-Z)</option>
-                            <option>Sort by: Name (Z-A)</option>
-                            <option>Sort by: Status</option>
-                          </select>
-                        </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="sort-box">
+                      <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                          <i class="fas fa-sort text-muted"></i>
+                        </span>
+                        <select class="form-select border-start-0 ps-0">
+                          <option selected>Sort by: Default</option>
+                          <option>Sort by: Date Added</option>
+                          <option>Sort by: Name (A-Z)</option>
+                          <option>Sort by: Name (Z-A)</option>
+                          <option>Sort by: Status</option>
+                        </select>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div class="filter-tabs mb-4">
-                  <div class="btn-group w-100" role="group">
-                    <button type="button" class="btn btn-outline-secondary active">
-                      <i class="fas fa-list me-2"></i>All <span class="badge bg-primary ms-2">5</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary">
-                      <i class="fas fa-spinner me-2"></i>Pending <span class="badge bg-warning ms-2">3</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary">
-                      <i class="fas fa-check-circle me-2"></i>Completed <span class="badge bg-success ms-2">2</span>
-                    </button>
-                  </div>
+              <div class="filter-tabs mb-4">
+                <div class="btn-group w-100" role="group">
+                  <button type="button" class="btn btn-outline-secondary active">
+                    <i class="fas fa-list me-2"></i>All <span class="badge bg-primary ms-2">5</span>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary">
+                    <i class="fas fa-spinner me-2"></i>Pending <span class="badge bg-warning ms-2">3</span>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary">
+                    <i class="fas fa-check-circle me-2"></i>Completed <span class="badge bg-success ms-2">2</span>
+                  </button>
                 </div>
+              </div>
 
-                <div class="tasks-section">
-                  <h5 class="section-title mb-3">
-                    <i class="fas fa-clipboard-list me-2"></i>Tasks
-                  </h5>
+              <div class="tasks-section">
+                <h5 class="section-title mb-3">
+                  <i class="fas fa-clipboard-list me-2"></i>Tasks
+                </h5>
 
-                  <div class="task-list">
-
-                    <div class="task-item pending">
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="form-check-input" id="task1" />
-                      </div>
-                      <div class="task-content">
-                        <label class="task-text" for="task1">Complete project documentation</label>
-                        <div class="task-meta">
-                          <span class="task-date">
-                            <i class="far fa-calendar me-1"></i>Added today
-                          </span>
-                        </div>
-                      </div>
-                      <div class="task-actions">
-                        <button class="btn btn-sm btn-status btn-warning" title="Mark as Pending">
-                          <i class="fas fa-spinner"></i>
-                        </button>
-                        <button class="btn btn-sm btn-edit" title="Edit">
-                          <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-delete" title="Delete">
-                          <i class="fas fa-trash"></i>
-                        </button>
+                <div class="task-list">
+                  @for (todo of todoList; track $index) {
+                  <div class="task-item pending">
+                    <div class="task-checkbox">
+                      <input type="checkbox" class="form-check-input" id="task1" [checked]="todo.status"/>
+                    </div>
+                    <div class="task-content">
+                      <label class="task-text" for="task1">{{todo.todoItem}}</label>
+                      <div class="task-meta">
+                        <span class="task-date">
+                          <i class="far fa-calendar me-1"></i>{{todo.createdDate}}
+                        </span>
                       </div>
                     </div>
-
-                    <div class="task-item completed">
+                    <div class="task-actions">
+                      <button class="btn btn-sm btn-status btn-warning" title="Mark as Pending">
+                        <i class="fas fa-spinner"></i>
+                      </button>
+                      <button class="btn btn-sm btn-edit" title="Edit">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete" title="Delete">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                  }
+                  <!-- <div class="task-item completed">
                       <div class="task-checkbox">
                         <input type="checkbox" class="form-check-input" id="task2" checked />
                       </div>
@@ -229,55 +222,56 @@
                           <i class="fas fa-trash"></i>
                         </button>
                       </div>
-                    </div>
+                    </div> -->
 
-                  </div>
                 </div>
-
-                <div class="stats-section mt-4">
-                  <div class="row g-3 text-center">
-                    <div class="col-4">
-                      <div class="stat-card">
-                        <div class="stat-icon text-primary">
-                          <i class="fas fa-list"></i>
-                        </div>
-                        <div class="stat-value">5</div>
-                        <div class="stat-label">Total Tasks</div>
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="stat-card">
-                        <div class="stat-icon text-warning">
-                          <i class="fas fa-spinner"></i>
-                        </div>
-                        <div class="stat-value">3</div>
-                        <div class="stat-label">Pending</div>
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="stat-card">
-                        <div class="stat-icon text-success">
-                          <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="stat-value">2</div>
-                        <div class="stat-label">Completed</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
               </div>
-            </div>
 
-            <div class="footer-section text-center mt-4">
-              <p class="text-muted mb-0">
-                <i class="far fa-lightbulb me-2"></i>Stay organized and productive!
-              </p>
-            </div>
+              <div class="stats-section mt-4">
+                <div class="row g-3 text-center">
+                  <div class="col-4">
+                    <div class="stat-card">
+                      <div class="stat-icon text-primary">
+                        <i class="fas fa-list"></i>
+                      </div>
+                      <div class="stat-value">5</div>
+                      <div class="stat-label">Total Tasks</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="stat-card">
+                      <div class="stat-icon text-warning">
+                        <i class="fas fa-spinner"></i>
+                      </div>
+                      <div class="stat-value">3</div>
+                      <div class="stat-label">Pending</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="stat-card">
+                      <div class="stat-icon text-success">
+                        <i class="fas fa-check-circle"></i>
+                      </div>
+                      <div class="stat-value">2</div>
+                      <div class="stat-label">Completed</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
+            </div>
           </div>
+
+          <div class="footer-section text-center mt-4">
+            <p class="text-muted mb-0">
+              <i class="far fa-lightbulb me-2"></i>Stay organized and productive!
+            </p>
+          </div>
+
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

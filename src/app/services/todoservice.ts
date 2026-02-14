@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TodoItemModel } from '../models/todoitem'
+import { TodoItemModel } from '../models/todo.model'
+import { TodoStatus } from '../models/todo-status.enum';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +21,7 @@ export class Todoservice {
     newTodo.id = this.generateId();
     newTodo.todoItem = taskName;
     newTodo.createdDate = new Date();
-    newTodo.status = "Pending";
+    newTodo.status = TodoStatus.Pending;
 
     this.todoList.push(newTodo);
     this.saveTasks();

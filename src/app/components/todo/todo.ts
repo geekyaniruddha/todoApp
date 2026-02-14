@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TodoItemModel } from '../../models/todoitem';
+import { TodoItemModel } from '../../models/todo.model';
 import { Todoservice } from '../../services/todoservice';
 
 @Component({
