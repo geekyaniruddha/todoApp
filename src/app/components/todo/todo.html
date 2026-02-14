@@ -39,8 +39,9 @@
                       class="form-control border-start-0 ps-0"
                       placeholder="What needs to be done?"
                       value=""
+                      [(ngModel)]="newTask"
                     />
-                    <button class="btn btn-primary btn-add px-4" type="button">
+                    <button class="btn btn-primary btn-add px-4" type="button" (click)="onSaveTask()">
                       <i class="fas fa-plus me-2"></i>Add Task
                     </button>
                   </div>
