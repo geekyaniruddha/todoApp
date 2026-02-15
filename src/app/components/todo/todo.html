@@ -80,14 +80,19 @@
 
               <div class="filter-tabs mb-4">
                 <div class="btn-group w-100" role="group">
-                  <button type="button" class="btn btn-outline-secondary active">
-                    <i class="fas fa-list me-2"></i>All <span class="badge bg-primary ms-2">5</span>
+                  <button type="button" class="btn btn-outline-secondary" [class.active]="activeTab==='all'"
+                    (click)="setTab('all')">
+                    <i class="fas fa-list me-2"></i>All <span class="badge bg-primary ms-2">{{totalTaskCount}}</span>
                   </button>
-                  <button type="button" class="btn btn-outline-secondary">
-                    <i class="fas fa-spinner me-2"></i>Pending <span class="badge bg-warning ms-2">3</span>
+                  <button type="button" class="btn btn-outline-secondary" [class.active]="activeTab==='pending'"
+                    (click)="setTab('pending')">
+                    <i class="fas fa-spinner me-2"></i>Pending <span
+                      class="badge bg-warning ms-2">{{pendingTaskCount}}</span>
                   </button>
-                  <button type="button" class="btn btn-outline-secondary">
-                    <i class="fas fa-check-circle me-2"></i>Completed <span class="badge bg-success ms-2">2</span>
+                  <button type="button" class="btn btn-outline-secondary" [class.active]="activeTab==='completed'"
+                    (click)="setTab('completed')">
+                    <i class="fas fa-check-circle me-2"></i>Completed <span
+                      class="badge bg-success ms-2">{{completedTaskCount}}</span>
                   </button>
                 </div>
               </div>
@@ -99,11 +104,9 @@
 
                 <div class="task-list">
                   @for (todo of todoList; track todo.id) {
-                  <div class="task-item"
-                  [class.completed]="todo.status === todoStatus.Completed"
-                  >
+                  <div class="task-item" [class.completed]="todo.status === todoStatus.Completed">
                     <div class="task-checkbox">
-                      <input type="checkbox" class="form-check-input" id="task1" [checked]="todo.status"/>
+                      <input type="checkbox" class="form-check-input" id="task1" [checked]="todo.status" />
                     </div>
                     <div class="task-content">
                       <label class="task-text" for="task1">{{todo.todoItem}}</label>
@@ -123,6 +126,14 @@
                     </div>
                   </div>
                   }
+                  @empty {
+                  <div class="text-center py-4 text-muted">
+                    <i class="fas fa-folder-open fa-2x mb-3"></i>
+                    <p class="mb-0">
+                      {{ getEmptyMessage() }}
+                    </p>
+                  </div>
+                  }
                 </div>
               </div>
 
@@ -133,7 +144,7 @@
                       <div class="stat-icon text-primary">
                         <i class="fas fa-list"></i>
                       </div>
-                      <div class="stat-value">5</div>
+                      <div class="stat-value">{{totalTaskCount}}</div>
                       <div class="stat-label">Total Tasks</div>
                     </div>
                   </div>
@@ -142,7 +153,7 @@
                       <div class="stat-icon text-warning">
                         <i class="fas fa-spinner"></i>
                       </div>
-                      <div class="stat-value">3</div>
+                      <div class="stat-value">{{pendingTaskCount}}</div>
                       <div class="stat-label">Pending</div>
                     </div>
                   </div>
@@ -151,7 +162,7 @@
                       <div class="stat-icon text-success">
                         <i class="fas fa-check-circle"></i>
                       </div>
-                      <div class="stat-value">2</div>
+                      <div class="stat-value">{{completedTaskCount}}</div>
                       <div class="stat-label">Completed</div>
                     </div>
                   </div>

@@ -14,13 +14,40 @@ export class Todo implements OnInit {
   todoList: TodoItemModel[] = [];
   newTask: string = "";
   todoStatus = TodoStatus;
+  activeTab: 'all' | 'pending' | 'completed' = 'all';
+  totalTaskCount: number = 0;
+  pendingTaskCount: number = 0;
+  completedTaskCount: number = 0;
 
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
-    this.todoList = this.todoService.getAllTasks();
+    this.refresh()
   }
 
+  refresh(): void {
+    this.todoList = this.todoService.getVisibleTasks();
+    this.totalTaskCount = this.todoService.getTotalCount();
+    this.pendingTaskCount = this.todoService.getPendingCount();
+    this.completedTaskCount = this.todoService.getCompletedCount();
+  }
+  getEmptyMessage(): string {
+    switch (this.activeTab) {
+      case 'pending':
+        return 'No pending tasks found.';
+
+      case 'completed':
+        return 'No completed tasks found.';
+
+      default:
+        return 'No tasks found.';
+    }
+  }
+  setTab(tab: 'all' | 'pending' | 'completed'): void {
+    this.activeTab = tab;
+    this.todoService.setTab(tab);
+    this.refresh();
+  }
   onSaveTask(): void {
     if (!this.newTask.trim()) return;
 

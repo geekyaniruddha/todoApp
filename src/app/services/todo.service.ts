@@ -7,16 +7,59 @@ import { TodoStatus } from '../models/todo-status.enum';
 export class TodoService {
   private storageKey = 'todoList';
   private todoList: TodoItemModel[] = [];
+  private activeTab: 'all' | 'pending' | 'completed' = 'all';
 
   constructor() {
     this.loadTasks();
   }
 
+  // ===============================
+  // 🔹 Public Getters
+  // ===============================
   getAllTasks(): TodoItemModel[] {
     return this.todoList;
   }
 
-   addTask(taskName: string): void {
+  getVisibleTasks(): TodoItemModel[] {
+    let list = [...this.todoList]; // clone (VERY IMPORTANT)
+
+    // Tab filter
+    if (this.activeTab === 'pending') {
+      list = list.filter(t => t.status === TodoStatus.Pending);
+    }
+
+    if (this.activeTab === 'completed') {
+      list = list.filter(t => t.status === TodoStatus.Completed);
+    }
+
+    return list;
+  }
+
+  getTotalCount(): number{
+    return this.todoList.length
+  }
+
+  getPendingCount(): number{
+    return this.todoList.filter(x=>x.status === TodoStatus.Pending).length
+  }
+
+  getCompletedCount(): number{
+    return this.todoList.filter(x=>x.status === TodoStatus.Completed).length
+  }
+
+  // ===============================
+  // 🔹 UI State Setters
+  // ===============================
+
+  setTab(tab: 'all' | 'pending' | 'completed') {
+    this.activeTab = tab;
+  }
+
+  // ===============================
+  // 🔹 CRUD
+  // ===============================
+
+  addTask(taskName: string): void {
     const newTodo = new TodoItemModel();
     newTodo.id = this.generateId();
     newTodo.todoItem = taskName;
@@ -26,6 +69,10 @@ export class TodoService {
     this.todoList.push(newTodo);
     this.saveTasks();
   }
+
+  // ===============================
+  // 🔹 Storage
+  // ===============================
 
   private saveTasks(): void {
     localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
