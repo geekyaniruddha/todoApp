@@ -98,12 +98,10 @@
                 </h5>
 
                 <div class="task-list">
-                  @for (todo of todoList; track $index) {
+                  @for (todo of todoList; track todo.id) {
                   <div class="task-item"
-                  [ngClass]="{
-                    'completed': todo.status == todoStatus.Completed,
-                    'pending': todo.status == todoStatus.Pending
-                  }">
+                  [class.completed]="todo.status === todoStatus.Completed"
+                  >
                     <div class="task-checkbox">
                       <input type="checkbox" class="form-check-input" id="task1" [checked]="todo.status"/>
                     </div>
@@ -116,9 +114,6 @@
                       </div>
                     </div>
                     <div class="task-actions">
-                      <!-- <button class="btn btn-sm btn-status btn-warning" title="Mark as Pending">
-                        <i class="fas fa-spinner"></i>
-                      </button> -->
                       <button class="btn btn-sm btn-edit" title="Edit">
                         <i class="fas fa-edit"></i>
                       </button>
@@ -128,106 +123,6 @@
                     </div>
                   </div>
                   }
-                  <!-- <div class="task-item completed">
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="form-check-input" id="task2" checked />
-                      </div>
-                      <div class="task-content">
-                        <label class="task-text" for="task2">Review pull requests</label>
-                        <div class="task-meta">
-                          <span class="task-date">
-                            <i class="far fa-calendar me-1"></i>2 days ago
-                          </span>
-                        </div>
-                      </div>
-                      <div class="task-actions">
-                        <button class="btn btn-sm btn-status btn-success" title="Mark as Completed">
-                          <i class="fas fa-check-circle"></i>
-                        </button>
-                        <button class="btn btn-sm btn-edit" title="Edit">
-                          <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-delete" title="Delete">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div class="task-item pending">
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="form-check-input" id="task3" />
-                      </div>
-                      <div class="task-content">
-                        <label class="task-text" for="task3">Update dependencies to latest versions</label>
-                        <div class="task-meta">
-                          <span class="task-date">
-                            <i class="far fa-calendar me-1"></i>3 days ago
-                          </span>
-                        </div>
-                      </div>
-                      <div class="task-actions">
-                        <button class="btn btn-sm btn-status btn-warning" title="Mark as Pending">
-                          <i class="fas fa-spinner"></i>
-                        </button>
-                        <button class="btn btn-sm btn-edit" title="Edit">
-                          <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-delete" title="Delete">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div class="task-item pending">
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="form-check-input" id="task4" />
-                      </div>
-                      <div class="task-content">
-                        <label class="task-text" for="task4">Design new landing page</label>
-                        <div class="task-meta">
-                          <span class="task-date">
-                            <i class="far fa-calendar me-1"></i>1 week ago
-                          </span>
-                        </div>
-                      </div>
-                      <div class="task-actions">
-                        <button class="btn btn-sm btn-status btn-warning" title="Mark as Pending">
-                          <i class="fas fa-spinner"></i>
-                        </button>
-                        <button class="btn btn-sm btn-edit" title="Edit">
-                          <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-delete" title="Delete">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div class="task-item completed">
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="form-check-input" id="task5" checked />
-                      </div>
-                      <div class="task-content">
-                        <label class="task-text" for="task5">Setup development environment</label>
-                        <div class="task-meta">
-                          <span class="task-date">
-                            <i class="far fa-calendar me-1"></i>2 weeks ago
-                          </span>
-                        </div>
-                      </div>
-                      <div class="task-actions">
-                        <button class="btn btn-sm btn-status btn-success" title="Mark as Completed">
-                          <i class="fas fa-check-circle"></i>
-                        </button>
-                        <button class="btn btn-sm btn-edit" title="Edit">
-                          <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-delete" title="Delete">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </div>
-                    </div> -->
-
                 </div>
               </div>
 
