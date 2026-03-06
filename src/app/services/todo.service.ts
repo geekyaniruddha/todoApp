@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TodoItemModel } from '../models/todo.model'
 import { TodoStatus } from '../models/todo-status.enum';
+import { SortOption } from '../models/sort-option.type'
 @Injectable({
   providedIn: 'root',
 })
@@ -9,6 +10,8 @@ export class TodoService {
   private todoList: TodoItemModel[] = [];
   private activeTab: 'all' | 'pending' | 'completed' = 'all';
   private searchTerm: string = '';
+  private sortOption: SortOption = 'default'
+  
   constructor() {
     this.loadTasks();
   }
@@ -37,6 +40,23 @@ export class TodoService {
       list = list.filter(t => t.todoItem.toLocaleLowerCase().includes(search));
     }
 
+    switch(this.sortOption){
+      case 'name-asc':
+        list.sort((a, b) => a.todoItem.localeCompare(b.todoItem))
+        break
+      case 'name-desc':
+        list.sort((a, b) => b.todoItem.localeCompare(a.todoItem))
+        break
+      case 'status':
+        list.sort((a, b)=> a.status - b.status)
+        break
+      case 'date':
+        list.sort((a, b) =>
+          b.createdDate.getTime() - a.createdDate.getTime()
+        );
+        break;
+    }
+
     return list;
   }
 
@@ -62,6 +82,10 @@ export class TodoService {
 
   setSearch(searchTerm: string){
     this.searchTerm = searchTerm
+  }
+
+  setSort(sortOption: SortOption){
+    this.sortOption = sortOption
   }
 
   // ===============================

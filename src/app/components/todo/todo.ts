@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { TodoItemModel } from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
 import { TodoStatus } from '../../models/todo-status.enum';
+import { SortOption } from '../../models/sort-option.type';
 
 @Component({
   selector: 'app-todo',
@@ -58,5 +59,9 @@ export class Todo implements OnInit {
   onSearch(term: string): void{
     this.todoService.setSearch(term)
     this.refresh();
+  }
+  onSortChange(sortOption: string){
+    this.todoService.setSort(sortOption as SortOption);
+    this.refresh()
   }
 }
