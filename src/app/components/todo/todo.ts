@@ -55,4 +55,8 @@ export class Todo implements OnInit {
     this.todoList = this.todoService.getAllTasks();
     this.newTask = "";
   }
+  onSearch(term: string): void{
+    this.todoService.setSearch(term)
+    this.refresh();
+  }
 }

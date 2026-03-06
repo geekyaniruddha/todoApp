@@ -8,7 +8,7 @@ export class TodoService {
   private storageKey = 'todoList';
   private todoList: TodoItemModel[] = [];
   private activeTab: 'all' | 'pending' | 'completed' = 'all';
-
+  private searchTerm: string = '';
   constructor() {
     this.loadTasks();
   }
@@ -32,6 +32,11 @@ export class TodoService {
       list = list.filter(t => t.status === TodoStatus.Completed);
     }
 
+    if(this.searchTerm){
+      const search = this.searchTerm.toLowerCase();
+      list = list.filter(t => t.todoItem.toLocaleLowerCase().includes(search));
+    }
+
     return list;
   }
 
@@ -53,6 +58,10 @@ export class TodoService {
 
   setTab(tab: 'all' | 'pending' | 'completed') {
     this.activeTab = tab;
+  }
+
+  setSearch(searchTerm: string){
+    this.searchTerm = searchTerm
   }
 
   // ===============================
